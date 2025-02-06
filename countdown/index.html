@@ -4,18 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>カウントダウンタイマー</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/countdown/style.css">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4742498529839819"
      crossorigin="anonymous"></script>
 </head>
 <body>
-    <a href="index.html">トップ</a>
+    <a href="../index.html">トップ</a>
   <div class="container">
     <h1>タイマー</h1>
     <label for="time-select">時間設定:</label>
     <select id="time-select">
-      <option value="30">30秒</option>
       <option value="60">60秒</option>
+      <option value="30">30秒</option>
       <option value="90">90秒</option>
       <!-- 他のオプションもここに追加 -->
       <option value="300">5分</option>
@@ -25,12 +25,16 @@
       <button id="stop-btn" style="display:none;">ストップ</button>
       <button id="reset-btn">リセット</button>
     </div>
-    <div id="timer-display">00:60</div>
+    <div id="timer-display">01:00</div>
     <div id="ad-container" style="display:none;">
       <!-- 広告スペース -->
       <p>広告表示</p>
     </div>
-  </div>
-  <script src="script.js"></script>
+
+    <p>回数<div id="count-display">0</div></p>
+    <button onclick="increment()">カウントアップ</button>
+
+  </div>    
+  <script src="/countdown/script.js"></script>
 </body>
 </html>
