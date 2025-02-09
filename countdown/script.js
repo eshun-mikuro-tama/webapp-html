@@ -30,13 +30,15 @@ startBtn.addEventListener('click', () => {
     startTimer();
     catchBtn.style.display = 'inline-block'; // キャッチボタンを表示
   }, 2000);
-
+  resetBtn.style.display = 'none';
   startBtn.style.display = 'none';
   stopBtn.style.display = 'inline-block';
+  judge = 1;
 });
 
 stopBtn.addEventListener('click', () => {
   clearInterval(timer);
+  resetBtn.style.display = 'inline-block';
   startBtn.style.display = 'inline-block';
   stopBtn.style.display = 'none';
   catchBtn.style.display = 'none'; // キャッチボタンを隠す
@@ -59,6 +61,7 @@ function startTimer() {
       adCounter++;
       if (adCounter % 3 === 0) showAd();
       catchBtn.style.display = 'none'; // タイマー終了時にキャッチボタンを隠す
+      resetBtn.style.display = 'inline-block';
       return;
     }
 
