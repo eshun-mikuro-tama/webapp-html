@@ -10,8 +10,8 @@ body {
 
 /* ヘッダー */
 header {
-  background-color: #0073e6;
-  color: white;
+  background-color: #f9f9f9;
+  color: black;
   padding: 20px;
   font-size: 24px;
 }
@@ -48,7 +48,7 @@ header {
 footer {
   margin-top: 40px;
   padding: 20px;
-  background-color: #0073e6;
-  color: white;
+  background-color: #f9f9f9;
+  color: black;
   font-size: 14px;
 }

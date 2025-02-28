@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScriptで簡単なWebアプリを作る方法</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; max-width: 800px; margin: auto; }
+        h1 { color: #333; }
+        .meta { color: gray; font-size: 14px; margin-bottom: 10px; }
+        .content img { max-width: 100%; border-radius: 10px; margin: 10px 0; }
+        .content pre { background: #f4f4f4; padding: 10px; border-radius: 5px; overflow-x: auto; }
+        .ads { text-align: center; margin: 20px 0; }
+        .related { margin-top: 30px; padding: 15px; background: #f9f9f9; border-radius: 10px; }
+        .related a { display: block; padding: 5px; text-decoration: none; color: #007bff; }
+    </style>
+</head>
+<body>
+
+    <h1>JavaScriptで簡単なWebアプリを作る方法</h1>
+    <p class="meta">🗓 投稿日: 2025/02/28 | 🏷 カテゴリ: JavaScript</p>
+
+    <div class="ads">
+        <!-- 🔹 AdSense広告（記事の冒頭） -->
+        <p>【ここに広告】</p>
+    </div>
+
+    <h2>📌 目次</h2>
+    <ul>
+        <li><a href="#step1">1. 作るアプリの概要</a></li>
+        <li><a href="#step2">2. HTML & CSSの実装</a></li>
+        <li><a href="#step3">3. JavaScriptの処理</a></li>
+        <li><a href="#step4">4. まとめ</a></li>
+    </ul>
+
+    <div class="content">
+        <h2 id="step1">1. 作るアプリの概要</h2>
+        <p>今回は、簡単なカウントアップアプリを作ります。</p>
+        <img src="https://via.placeholder.com/800x400" alt="アプリの完成イメージ">
+        
+        <h2 id="step2">2. HTML & CSSの実装</h2>
+        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+    &lt;title&gt;カウントアップアプリ&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p id="count"&gt;0&lt;/p&gt;
+    &lt;button onclick="increment()"&gt;+1&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+
+        <div class="ads">
+            <!-- 🔹 AdSense広告（記事の途中） -->
+            <p>【ここに広告】</p>
+        </div>
+
+        <h2 id="step3">3. JavaScriptの処理</h2>
+        <pre>
+function increment() {
+    let count = document.getElementById("count");
+    count.textContent = Number(count.textContent) + 1;
+}
+        </pre>
+
+        <h2 id="step4">4. まとめ</h2>
+        <p>このアプリを改造して、ダークモードやローカルストレージ対応にするとさらに便利になります！</p>
+    </div>
+
+    <div class="ads">
+        <!-- 🔹 AdSense広告（記事の最後） -->
+        <p>【ここに広告】</p>
+    </div>
+
+    <div class="related">
+        <h3>🔗 関連記事</h3>
+        <a href="blog-2.html">📌 Webアプリで収益化する方法5選</a>
+        <a href="blog-3.html">📌 FirebaseでWebアプリをホストする方法</a>
+    </div>
+
+</body>
+</html>
