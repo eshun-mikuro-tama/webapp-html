@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+h1, h2, h3 {
+    color: #333;
+}
+pre {
+    background: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+ul {
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+}
+.toc {
+    background: #eef;
+    padding: 15px;
+    border-radius: 5px;
+}
+.toc a {
+    display: block;
+    color: #007bff;
+    text-decoration: none;
+    padding: 5px 0;
+}
+.toc a:hover {
+    text-decoration: underline;
+}
+footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    background: #eee;
+}
