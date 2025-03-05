@@ -44,6 +44,11 @@
 &lt;body&gt;
 &lt;header&gt;&lt;h1&gt;カウントダウンタイマー&lt;/h1&gt;&lt;/header&gt;
 &lt;main&gt;&lt;/main&gt;
+&lt;p id="time">00:01:00&lt;/p&gt;
+&lt;button id="start">スタート&lt;/button&gt;
+&lt;button id="stop">ストップ&lt;/button&gt;
+&lt;button id="reset">リセット&lt;/button&gt;
+&lt;p id="messeage">&lt;/p&gt;
 &lt;footer&gt;Copylight&lt;/footer&gt;
 &lt;/body&gt;
 &lt;/html&gt;
@@ -58,13 +63,28 @@
 let timer; // タイマーを格納する変数
 let totalSeconds = 60; // 初期の秒数（60秒）
 let running = false; // タイマーの動作状態
-        
+let messeage = " "; // メッセージの初期値
+
 /* タイマーの表示を更新する関数 */
 const updateDisplay = () => {
 let minutes = Math.floor(totalSeconds / 60); // 分を計算
 let seconds = totalSeconds % 60; // 秒を計算
+messeage = " ";
+
+if (totalSeconds === 30) {
+messeage = "残り30秒!";
+}else if (totalSeconds === 3) {
+messeage = "残り3秒!";
+}else if (totalSeconds === 2) {
+messeage = "残り2秒!";
+}else if (totalSeconds === 1) {
+messeage = "残り1秒!";
+}else if (totalSeconds === 0) {
+messeage = "終了!";
+}
 document.getElementById('time').textContent =
 `00:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+document.getElementById('messeage').textContent = messeage;
 }
         
 /* スタートボタンの処理 */
