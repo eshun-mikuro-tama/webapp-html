@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スマートシフトメーカー Pro (Excel出力対応)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; background-color: #f4f7f6; color: #333; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        .config-area { background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 20px; text-align: center; }
+        input, button { font-size: 16px; padding: 10px; border-radius: 8px; border: 1px solid #ddd; margin: 5px; }
+        button { background-color: #3498db; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #2980b9; }
+        #downloadBtn { background-color: #27ae60; display: none; margin-top: 10px; }
+        #downloadBtn:hover { background-color: #219150; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; background: white; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        th { background: #f8f9fa; }
+        .week-container { margin-bottom: 30px; width: 100%; max-width: 800px; }
+    </style>
+</head>
+<body>
+
+    <h1>スマートシフトメーカー Pro</h1>
+
+    <div class="config-area">
+        <input type="month" id="targetMonth" value="2026-04">
+        <button onclick="createShift()">1. シフトを作成</button>
+        <button id="downloadBtn" onclick="exportToExcel()">2. Excelで保存</button>
+    </div>
+
+    <div id="resultArea"></div>
+
+    <script>
+        const staffs = ['スタッフA', 'スタッフB', 'スタッフC', 'スタッフD', 'スタッフE'];
+        const rotationPatterns = [
+            { t11: [0, 1, 2], t12: [3, 4] },
+            { t11: [3, 4, 0], t12: [1, 2] },
+            { t11: [1, 2, 3], t12: [4, 0] },
+            { t11: [4, 0, 1], t12: [2, 3] },
+            { t11: [2, 3, 4], t12: [0, 1] }
+        ];
+
+        function createShift() {
+            const dateStr = document.getElementById('targetMonth').value;
+            const [year, month] = dateStr.split('-');
+            const resultArea = document.getElementById('resultArea');
+            resultArea.innerHTML = '';
+            
+            const daysInMonth = new Date(year, month, 0).getDate();
+            let html = '';
+            
+            // 全データを一つのテーブルにまとめて生成（Excel出力しやすくするため）
+            html = `<table id="shiftTable">
+                        <thead>
+                            <tr><th>日付</th><th>曜日</th><th>11時休憩</th><th>12時休憩</th></tr>
+                        </thead>
+                        <tbody>`;
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const date = new Date(year, month - 1, day);
+                const dayOfWeek = date.getDay();
+                const weekNumber = Math.floor((day - 1 + new Date(year, month-1, 1).getDay()) / 7);
+                const dayNames = ['日', '月', '火', '水', '木', '金', '土'];
+                
+                const pattern = rotationPatterns[weekNumber % 5];
+                const t11 = pattern.t11.map(i => staffs[i]).join(', ');
+                const t12 = pattern.t12.map(i => staffs[i]).join(', ');
+
+                html += `<tr><td>${day}日</td><td>${dayNames[dayOfWeek]}</td><td>${t11}</td><td>${t12}</td></tr>`;
+            }
+            html += `</tbody></table>`;
+            resultArea.innerHTML = html;
+            document.getElementById('downloadBtn').style.display = 'inline-block';
+        }
+
+        function exportToExcel() {
+            const table = document.getElementById('shiftTable');
+            const wb = XLSX.utils.table_to_book(table, { sheet: "シフト表" });
+            const fileName = document.getElementById('targetMonth').value + "_休憩シフト.xlsx";
+            XLSX.writeFile(wb, fileName);
+        }
+    </script>
+</body>
+</html>
